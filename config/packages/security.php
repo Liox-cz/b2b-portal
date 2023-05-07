@@ -15,7 +15,7 @@ return static function (SecurityConfig $securityConfig): void {
         ->property('username');
 
     $securityConfig->firewall('dev')
-        ->pattern('^/(_(profiler|wdt)|css|images|js|build)/')
+        ->pattern('^/(_(profiler|wdt)|css|images|js|assets)/')
         ->security(false);
 
     $mainFirewall = $securityConfig->firewall('main');

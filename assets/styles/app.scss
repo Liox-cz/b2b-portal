@@ -1,5 +1,30 @@
-$primary: #643cfe;
+$primary: #000;
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
 
+body {
+    padding: 20px;
+}
+
+.login-form {
+    margin: 20px auto;
+    max-width: 370px;
+    padding: 30px;
+    background: #fff;
+
+    label {
+        font-weight: bold;
+    }
+}
+
+body.page-login {
+    .liox-logo {
+        background: url('../img/liox-logo.png') center center no-repeat;
+        background-size: contain;
+        display: block;
+        width: 163px;
+        height: 100px;
+        margin: 20px auto;
+    }
+}
