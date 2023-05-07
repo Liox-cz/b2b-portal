@@ -78,6 +78,7 @@ RUN chmod +x /usr/local/bin/wait-for-it \
         pdo_pgsql \
         opcache \
         apcu \
+        gd \
         xdebug \
     && apt-get update && apt-get --no-install-recommends --no-install-suggests -y install curl $(cat /requirements.apt) \
     && apt-get clean && rm -rf /var/lib/apt/lists/* \

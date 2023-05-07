@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Liox\B2B\Doctrine\AddressDoctrineType;
+use Liox\B2B\Doctrine\UserIdDoctrineType;
 use Liox\B2B\Doctrine\PriceDoctrineType;
 use Ramsey\Uuid\Doctrine\UuidType;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -15,6 +16,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 'uuid' => UuidType::class,
                 AddressDoctrineType::NAME => AddressDoctrineType::class,
                 PriceDoctrineType::NAME => PriceDoctrineType::class,
+                UserIdDoctrineType::NAME => UserIdDoctrineType::class,
             ],
         ],
         'orm' => [

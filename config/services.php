@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-use Liox\B2B\Services\Cart\CartStorage;
-use Liox\B2B\Services\Cart\SessionCartStorage;
+use Liox\B2B\Services\ControllerValueResolvers\DomainIdValueResolver;
+use Liox\B2B\Services\ControllerValueResolvers\UserIdValueResolver;
+use Liox\B2B\Services\Security\HashPlainTextPassword;
+use Liox\B2B\Services\Security\SymfonyHashPlainTextPassword;
 use Monolog\Processor\PsrLogMessageProcessor;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler;
@@ -34,6 +36,9 @@ return static function(ContainerConfigurator $configurator): void
     // Controllers
     $services->load('Liox\\B2B\\Controller\\', __DIR__ . '/../src/Controller/{*Controller.php}');
 
+    // CLI commands
+    $services->load('Liox\\B2B\\Console\\', __DIR__ . '/../src/Console/**/{*.php}');
+
     // Repositories
     $services->load('Liox\\B2B\\Repository\\', __DIR__ . '/../src/Repository/{*Repository.php}');
 
@@ -47,5 +52,13 @@ return static function(ContainerConfigurator $configurator): void
     $services->load('Liox\\B2B\\Services\\', __DIR__ . '/../src/Services/**/{*.php}');
     $services->load('Liox\\B2B\\Query\\', __DIR__ . '/../src/Query/**/{*.php}');
 
-    $services->alias(CartStorage::class, SessionCartStorage::class);
+    // Value resolvers
+    $services->set(DomainIdValueResolver::class)
+        ->tag('controller.argument_value_resolver', ['priority' => 110]);
+
+    $services->set(UserIdValueResolver::class)
+        ->tag('controller.argument_value_resolver', ['priority' => 110]);
+
+    $services->set(SymfonyHashPlainTextPassword::class);
+    $services->alias(HashPlainTextPassword::class, SymfonyHashPlainTextPassword::class);
 };

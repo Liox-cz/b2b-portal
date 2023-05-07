@@ -19,6 +19,7 @@ parameters:
     excludePaths:
         - tests/bootstrap.php
         - tests/object-manager.php
+        - bin/csv-to-xml.php
     symfony:
         container_xml_path: var/cache/dev/Liox_B2B_LioxKernelDevDebugContainer.xml
     doctrine:

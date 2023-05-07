@@ -5,11 +5,6 @@ namespace Liox\B2B\Tests\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Liox\B2B\Entity\Product;
-use Liox\B2B\Entity\ProductVariant;
-use Liox\B2B\Value\Currency;
-use Liox\B2B\Value\Price;
-use Ramsey\Uuid\Uuid;
 
 final class TestDataFixture extends Fixture
 {
@@ -20,31 +15,6 @@ final class TestDataFixture extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $product = new Product(
-            Uuid::fromString(self::PRODUCT_ID),
-            'Testovací kresbička',
-        );
-
-        $manager->persist($product);
-
-        $variant = new ProductVariant(
-            Uuid::fromString(self::VARIANT_1_ID),
-            $product,
-            'Varianta 1',
-            new Price(10, 21, Currency::CZK),
-        );
-
-        $manager->persist($variant);
-
-        $variant = new ProductVariant(
-            Uuid::fromString(self::VARIANT_2_ID),
-            $product,
-            'Varianta 2',
-            new Price(20, 21, Currency::CZK),
-        );
-
-        $manager->persist($variant);
-
         $manager->flush();
     }
 }
