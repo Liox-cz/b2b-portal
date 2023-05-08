@@ -14,4 +14,7 @@ return static function(ContainerConfigurator $configurator): void
         ->public();
 
     // $services->alias(CartStorage::class, InMemoryCartStorage::class);
+
+    // Data fixtures
+    $services->load('Liox\\B2B\\Tests\\DataFixtures\\', __DIR__ . '/../tests/DataFixtures/{*.php}');
 };
