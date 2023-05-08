@@ -23,7 +23,7 @@ WORKDIR /build
 COPY --from=composer /app .
 
 # Install npm packages
-COPY package.json yarn.lock webpack.config.js ./
+COPY package.json package-lock.json webpack.config.js ./
 RUN yarn install
 
 # Production yarn build
